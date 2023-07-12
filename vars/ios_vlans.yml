@@ -1,0 +1,8 @@
+failed: true
+msg: 'ssh connection failed: ssh connect failed: Connection refused'
+exception: "  File \"/usr/share/ansible/collections/ansible_collections/cisco/ios/plugins/module_utils/network/ios/ios.py\",
+  line 60, in get_capabilities\n    capabilities = Connection(module._socket_path).get_capabilities()\n
+  \                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/ansible/module_utils/connection.py\",
+  line 200, in __rpc__\n    raise ConnectionError(to_text(msg, errors='surrogate_then_replace'),
+  code=code)\n"
+changed: false

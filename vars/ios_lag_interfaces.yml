@@ -1,0 +1,15 @@
+parsed:
+- name: Port-channel1
+  members:
+  - member: GigabitEthernet0/1
+    mode: passive
+  - member: GigabitEthernet0/2
+    mode: passive
+- name: Port-channel1.105
+  members:
+  - {}
+- name: Port-channel1.205
+  members:
+  - {}
+changed: false
+failed: false

@@ -1,0 +1,104 @@
+- name: Parse ACL interfaces for provided configuration
+  cisco.ios.ios_acl_interfaces:
+    running_config: "{{ lookup('file', config) }}"
+    state: parsed
+  ignore_errors: true
+  register: ios_acl_interfaces
+
+- name: Parse ACL interfaces for provided configuration
+  cisco.ios.ios_acls:
+    running_config: "{{ lookup('file', config) }}"
+    state: parsed
+  ignore_errors: true
+  register: ios_acls
+
+- name: Parse BGP address family for provided configuration
+  cisco.ios.ios_bgp_address_family:
+    running_config: "{{ lookup('file', config) }}"
+    state: parsed
+  ignore_errors: true
+  register: ios_bgp_address_family
+
+- name: Parse BGP Global for provided configuration
+  cisco.ios.ios_bgp_global:
+    running_config: "{{ lookup('file', config) }}"
+    state: parsed
+  ignore_errors: true
+  register: ios_bgp_global
+
+- name: Parse interfaces for provided configuration
+  cisco.ios.ios_interfaces:
+    running_config: "{{ lookup('file', config) }}"
+    state: parsed
+  ignore_errors: true
+  register: ios_interfaces
+
+- name: Parse L2 interfaces for provided configuration
+  cisco.ios.ios_l2_interfaces:
+    running_config: "{{ lookup('file', config) }}"
+    state: parsed
+  ignore_errors: true
+  register: ios_l2_interfaces
+
+- name: Parse L3 interfaces for provided configuration
+  cisco.ios.ios_l3_interfaces:
+    running_config: "{{ lookup('file', config) }}"
+    state: parsed
+  ignore_errors: true
+  register: ios_l3_interfaces
+
+- name: Parse LACP for provided configuration
+  cisco.ios.ios_lacp:
+    running_config: "{{ lookup('file', config) }}"
+    state: parsed
+  ignore_errors: true
+  register: ios_lacp
+
+- name: Parse LACP interfaces for provided configuration
+  cisco.ios.ios_lacp_interfaces:
+    running_config: "{{ lookup('file', config) }}"
+    state: parsed
+  ignore_errors: true
+  register: ios_lacp_interfaces
+
+- name: Parse Link aggregation for provided configuration
+  cisco.ios.ios_lag_interfaces:
+    running_config: "{{ lookup('file', config) }}"
+    state: parsed
+  ignore_errors: true
+  register: ios_lag_interfaces
+
+- name: Parse prefix lists for provided configuration
+  cisco.ios.ios_prefix_lists:
+    running_config: "{{ lookup('file', config) }}"
+    state: parsed
+  ignore_errors: true
+  register: ios_prefix_lists
+
+- name: Parse route maps for provided configuration
+  cisco.ios.ios_route_maps:
+    running_config: "{{ lookup('file', 'route-map.cfg') }}"
+    state: parsed
+  ignore_errors: true
+  register: ios_route_maps
+
+# - name: Parse system attributes for provided configuration
+#   cisco.ios.ios_system:
+#     running_config: "{{ lookup('file', config) }}"
+#     state: parsed
+#   ignore_errors: true
+#   register: ios_system
+
+- name: Parse VLANs for provided configuration
+  cisco.ios.ios_vlans:
+    running_config: "{{ lookup('file', config) }}"
+    state: parsed
+  ignore_errors: true
+  register: ios_vlans
+
+# - name: Parse VRFs for provided configuration
+#   cisco.ios.ios_vrf:
+#     running_config: "{{ lookup('file', config) }}"
+#     state: parsed
+#   ignore_errors: true
+#   register: ios_vrf

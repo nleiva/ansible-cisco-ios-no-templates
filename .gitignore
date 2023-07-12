@@ -1,0 +1,6 @@
+.DS_Store
+.vscode
+ansible-navigator.log
+
+# Galaxy artifacts.
+*.tar.gz

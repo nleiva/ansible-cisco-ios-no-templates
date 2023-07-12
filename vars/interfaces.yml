@@ -1,0 +1,11 @@
+interfaces:
+- name: Port-channel1.105
+  description: BC_AM11_ECX_CUSTOMERABCD_LD7
+  enabled: true
+  ipv4:
+  - address: 100.64.136.90/30
+- name: Port-channel1.205
+  description: ABC_AM11_PA_CUSTOMERABCD
+  enabled: true
+  ipv4:
+  - address: 198.53.134.65/29

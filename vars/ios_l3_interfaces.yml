@@ -1,0 +1,18 @@
+parsed:
+- name: GigabitEthernet0/1
+- name: GigabitEthernet0/2
+- name: GigabitEthernet0/3
+  ipv4:
+  - dhcp:
+      enable: true
+  ipv6:
+  - address: dhcp
+- name: Port-channel1
+- name: Port-channel1.105
+  ipv4:
+  - address: 100.64.136.90/30
+- name: Port-channel1.205
+  ipv4:
+  - address: 198.53.134.65/29
+changed: false
+failed: false

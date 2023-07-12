@@ -1,0 +1,10 @@
+exclude_paths:
+  - vars
+
+skip_list:
+  - git-latest
+  - experimental
+  - yaml
+
+warn_list:
+  - unpredictability

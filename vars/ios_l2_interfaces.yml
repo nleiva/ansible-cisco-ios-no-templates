@@ -1,0 +1,9 @@
+parsed:
+- name: Port-channel1
+- name: Port-channel1.105
+- name: Port-channel1.205
+- name: GigabitEthernet0/1
+- name: GigabitEthernet0/2
+- name: GigabitEthernet0/3
+changed: false
+failed: false

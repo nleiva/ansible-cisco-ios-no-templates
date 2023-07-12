@@ -1,0 +1,52 @@
+parsed:
+  as_number: '65000'
+  address_family:
+  - afi: ipv4
+    vrf: customerabcd-vrf
+    redistribute:
+    - static:
+        set: true
+        route_map: RM-SNAT-CUSTOMERABCD-INBOUND
+    neighbors:
+    - peer_group: true
+      neighbor_address: CUSTOMERABCD-LD7
+      remote_as: 39552
+      local_as:
+        set: true
+        number: 4242001101
+        no_prepend:
+          set: true
+          replace_as: true
+      fall_over:
+        bfd:
+          set: true
+      route_maps:
+      - name: RM-ROUTES-FROM-CUSTOMERABCD
+        in: true
+      - name: RM-ROUTES-TO-CUSTOMERABCD
+        out: true
+    - peer_group: true
+      neighbor_address: PALO-ALTO-CUSTOMERABCD-VRF
+      remote_as: 4242001100
+      local_as:
+        set: true
+        number: 4242001101
+        no_prepend:
+          set: true
+          replace_as: true
+      fall_over:
+        bfd:
+          set: true
+      send_community:
+        both: true
+      route_maps:
+      - name: RM-ROUTES-TO-PA-CUSTOMERABCD-VRF
+        out: true
+    - peer_group_name: CUSTOMERABCD-LD7
+      neighbor_address: 100.64.136.89
+      activate: true
+    - peer_group_name: PALO-ALTO-CUSTOMERABCD-VRF
+      neighbor_address: 198.53.134.67
+      activate: true
+changed: false
+failed: false

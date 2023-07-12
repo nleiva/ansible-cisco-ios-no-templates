@@ -1,0 +1,47 @@
+- name: Parsing Cisco IOS config
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Save configs parsed
+      ansible.builtin.include_tasks: parse_tasks.yml
+      vars:
+        ansible_connection: ansible.netcommon.network_cli
+        ansible_network_os: cisco.ios.ios
+
+    - name: Save configs parsed
+      ansible.builtin.copy:
+        content: "{{ item.content | default('N/A') | ansible.builtin.to_nice_yaml(indent=2, sort_keys=false) }}"
+        dest: "/output/{{ item.name }}.yml"
+        mode: "0644"
+      loop:
+        - name: ios_acl_interfaces
+          content: "{{ ios_acl_interfaces }}"
+        - name: ios_acls
+          content: "{{ ios_acls }}"
+        - name: ios_bgp_address_family
+          content: "{{ ios_bgp_address_family }}"
+        - name: ios_bgp_global
+          content: "{{ ios_bgp_global }}"
+        - name: ios_interfaces
+          content: "{{ ios_interfaces }}"
+        - name: ios_l2_interfaces
+          content: "{{ ios_l2_interfaces }}"
+        - name: ios_l3_interfaces
+          content: "{{ ios_l3_interfaces }}"
+        - name: ios_lacp
+          content: "{{ ios_lacp }}"
+        - name: ios_lacp_interfaces
+          content: "{{ ios_lacp_interfaces }}"
+        - name: ios_lag_interfaces
+          content: "{{ ios_lag_interfaces }}"
+        - name: ios_prefix_lists
+          content: "{{ ios_prefix_lists }}"
+        - name: ios_route_maps
+          content: "{{ ios_route_maps }}"
+        - name: ios_vlans
+          content: "{{ ios_vlans }}"
+        # - name: ios_system
+        #   content: "{{ ios_system }}"
+        # - name: ios_vrf
+        #   content: "{{ ios_vrf }}"

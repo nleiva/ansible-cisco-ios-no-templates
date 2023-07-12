@@ -1,0 +1,22 @@
+parsed:
+- name: GigabitEthernet0/1
+  description: LACP-1
+  enabled: false
+- name: GigabitEthernet0/2
+  description: LACP-2
+  enabled: false
+- name: GigabitEthernet0/3
+  description: ISP
+  duplex: auto
+  speed: auto
+  enabled: true
+- name: Port-channel1
+  enabled: true
+- name: Port-channel1.105
+  description: BC_AM11_ECX_CUSTOMERABCD_LD7
+  enabled: true
+- name: Port-channel1.205
+  description: ABC_AM11_PA_CUSTOMERABCD
+  enabled: true
+changed: false
+failed: false

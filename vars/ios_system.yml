@@ -1,0 +1,3 @@
+failed: true
+msg: 'ssh connection failed: ssh connect failed: Connection refused'
+changed: false

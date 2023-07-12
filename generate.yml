@@ -1,0 +1,48 @@
+- name: Parsing Cisco IOS config
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Import YAML configs
+      ansible.builtin.include_vars:
+        file: "{{ item }}.yml"
+        name: "{{ item }}"
+      ignore_errors: true
+      loop:
+        - "ios_acl_interfaces"
+        - "ios_acls"
+        - "ios_bgp_address_family"
+        - "ios_bgp_global"
+        - "ios_interfaces"
+        - "ios_l2_interfaces"
+        - "ios_l3_interfaces"
+        - "ios_lacp"
+        - "ios_lacp_interfaces"
+        - "ios_lag_interfaces"
+        - "ios_prefix_lists"
+        - "ios_route_maps"
+        # - "ios_system"
+        - "ios_vlans"
+        # - "ios_vrf"
+
+    - name: Set new interfaces variable
+      ansible.builtin.set_fact:
+        interfaces:
+          interfaces: "{{ ios_interfaces.parsed | community.general.lists_mergeby(ios_l3_interfaces.parsed, 'name') }}"
+
+    - name: Save interfaces aggregated data
+      ansible.builtin.copy:
+        content: "{{ interfaces | default('N/A') | to_nice_yaml(indent=2, sort_keys=false) }}"
+        dest: "/output/interfaces.yml"
+        mode: "0644"
+
+    - name: Use L3 Interfaces resource module
+      cisco.ios.ios_l3_interfaces:
+        state: rendered
+        config: "{{ interfaces.interfaces }}"
+      vars:
+        ansible_connection: ansible.netcommon.network_cli
+        ansible_network_os: cisco.ios.ios
+      # "Unsupported parameters for (cisco.ios.ios_l3_interfaces)
+      # module: config.description, config.enabled.
+      # Supported parameters include: ipv4, ipv6, name."

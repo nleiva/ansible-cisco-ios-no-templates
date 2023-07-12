@@ -1,0 +1,9 @@
+failed: true
+msg: '''NoneType'' object has no attribute ''group'''
+exception: "  File \"/usr/share/ansible/collections/ansible_collections/ansible/netcommon/plugins/module_utils/network/common/facts/facts.py\",
+  line 126, in get_network_resources_facts\n    inst.populate_facts(self._connection,
+  self.ansible_facts, data)\n  File \"/usr/share/ansible/collections/ansible_collections/cisco/ios/plugins/module_utils/network/ios/facts/lacp_interfaces/lacp_interfaces.py\",
+  line 72, in populate_facts\n    obj = self.render_config(self.generated_spec, conf)\n
+  \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/share/ansible/collections/ansible_collections/cisco/ios/plugins/module_utils/network/ios/facts/lacp_interfaces/lacp_interfaces.py\",
+  line 98, in render_config\n    intf = match.group(1)\n           ^^^^^^^^^^^\n"
+changed: false

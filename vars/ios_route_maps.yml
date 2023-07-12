@@ -1,0 +1,42 @@
+parsed:
+- entries:
+  - action: permit
+    sequence: 10
+    match:
+      metric:
+        value: 10
+    set:
+      as_path:
+        prepend:
+          as_number:
+          - '65000'
+  - action: permit
+    sequence: 20
+    match:
+      ip:
+        address:
+          prefix_lists:
+          - max24
+          - ''
+  - action: permit
+    sequence: 30
+    set:
+      as_path:
+        prepend:
+          as_number:
+          - '65000'
+          - '65000'
+          - '65000'
+    continue_entry:
+      set: true
+  - action: permit
+    sequence: 40
+    match:
+      community:
+        name:
+        - '10:1'
+    set:
+      local_preference: 104
+  route_map: RM-ROUTES-TO-PA-CUSTOMERABCD-VRF
+changed: false
+failed: false
