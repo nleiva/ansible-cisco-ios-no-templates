@@ -3,6 +3,41 @@ parsed:
   - action: permit
     sequence: 10
     match:
+      as_path:
+        acls:
+        - 200
+    set:
+      local_preference: 250
+      weight: 200
+  route_map: RM-ROUTES-FROM-CUSTOMERABCD
+- entries:
+  - action: permit
+    sequence: 10
+    match:
+      ip:
+        address:
+          acls:
+          - '101'
+    set:
+      as_path:
+        prepend:
+          as_number:
+          - '65000'
+      metric:
+        metric_value: 100
+  - action: permit
+    sequence: 20
+    set:
+      as_path:
+        prepend:
+          as_number:
+          - '65000'
+          - '65000'
+  route_map: RM-ROUTES-TO-CUSTOMERABCD
+- entries:
+  - action: permit
+    sequence: 10
+    match:
       metric:
         value: 10
     set:
@@ -17,9 +52,14 @@ parsed:
         address:
           prefix_lists:
           - max24
-          - ''
+    set:
+      ip:
+        next_hop:
+          address: 10.2.2.2
   - action: permit
     sequence: 30
+    continue_entry:
+      set: true
     set:
       as_path:
         prepend:
@@ -27,8 +67,6 @@ parsed:
           - '65000'
           - '65000'
           - '65000'
-    continue_entry:
-      set: true
   - action: permit
     sequence: 40
     match:
@@ -38,5 +76,21 @@ parsed:
     set:
       local_preference: 104
   route_map: RM-ROUTES-TO-PA-CUSTOMERABCD-VRF
+- entries:
+  - action: deny
+    sequence: 10
+    match:
+      ip:
+        address:
+          acls:
+          - '10'
+  - action: permit
+    sequence: 20
+    match:
+      ip:
+        address:
+          acls:
+          - '11'
+  route_map: RM-SNAT-CUSTOMERABCD-INBOUND
 changed: false
 failed: false
